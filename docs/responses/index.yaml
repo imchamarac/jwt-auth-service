@@ -1,0 +1,48 @@
+Unauthorized:
+    description: Unauthorized
+    content:
+        application/json:
+            schema:
+                allOf:
+                    - $ref: '../base.yaml#/components/schemas/Error'
+                    - type: object
+                      properties:
+                          message:
+                              type: string
+                              default: No auth token
+NotFound:
+    description: Data Not Found
+    content:
+        application/json:
+            schema:
+                allOf:
+                    - $ref: '../base.yaml#/components/schemas/Error'
+                    - type: object
+                      properties:
+                          message:
+                              type: string
+                              default: No record found
+ServerError:
+    description: Internal Server Error
+    content:
+        application/json:
+            schema:
+                allOf:
+                    - $ref: '../base.yaml#/components/schemas/Error'
+                    - type: object
+                      properties:
+                          message:
+                              type: string
+                              default: Internal server error
+UnprocessableEntity:
+    description: Validation Error
+    content:
+        application/json:
+            schema:
+                allOf:
+                    - $ref: '../base.yaml#/components/schemas/Error'
+                    - type: object
+                      properties:
+                          message:
+                              type: string
+                              default: Validation failed

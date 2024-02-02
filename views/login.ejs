@@ -1,0 +1,24 @@
+<div class="px-4 my-5">
+    <img class="d-block mx-auto mb-4" src="https://uilogos.co/img/logomark/u-mark.png" alt="" width="auto" height="100">
+    <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3 mx-auto bg-light p-4 rounded">
+        <h1 class="display-6 fw-bold text-center" data-testid="page-title">Login</h1>
+        <form action="/login" method="POST" data-testid="login-form">
+            <div class="mb-2">
+                <label for="email" class="form-label text-left">Email</label>
+                <input type="text" class="form-control rounded" name="email" placeholder="Email" required>
+            </div>
+            <div class="mb-2">
+                <label for="password" class="form-label text-left">Password</label>
+                <input type="password" class="form-control rounded" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2 w-100" data-testid="login-button">Login</button>
+            <div class="my-1">If you don't have an account, <a href="/register">register</a></div>
+
+            <div class="text-danger mt-2" data-testid="login-error">
+                <% if (error) { %>
+                    <%= error %>
+                        <% } %>
+            </div>
+        </form>
+    </div>
+</div>

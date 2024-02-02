@@ -1,0 +1,26 @@
+openapi: '3.1.0'
+info:
+    version: 1.0.0
+    title: JWT Auth Service
+    description: This can be used as an user authentication server to create and manage user accounts with JWT based user authentication.
+servers:
+    - url: http://localhost:8080/api/v1
+      description: Development server
+components:
+    schemas:
+        $ref: './schemas/index.yaml'
+    responses:
+        $ref: './responses/index.yaml'
+
+    securitySchemes:
+        bearerAuth:
+            type: http
+            scheme: bearer
+            bearerFormat: JWT
+tags:
+    - name: Auth
+      description: The authentication endpoints.
+    - name: User
+      description: The authentication endpoints.
+paths:
+    $ref: 'paths/index.yaml'

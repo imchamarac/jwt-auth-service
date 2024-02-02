@@ -1,0 +1,78 @@
+<div class="px-4 my-5">
+    <img class="d-block mx-auto mb-4" src="https://uilogos.co/img/logomark/u-mark.png" alt="" width="auto" height="100">
+    <div class="col-md-6 col-lg-4 col-xl-4 mx-auto bg-light p-4 rounded">
+        <h1 class="display-6 fw-bold text-center">Register</h1>
+
+        <% if (error) var errors=JSON.parse(error); %>
+
+            <% if (formCompleted==='false' ) { %>
+                <form action="/register" method="POST">
+                    <div class="mb-2">
+                        <label for="first_name" class="form-label text-left">First name</label>
+                        <input name="first_name" type="text" class="form-control rounded" placeholder="First name"
+                            value="<%= first_name || '' %>" required>
+                    </div>
+                    <div class="text-danger mt-2">
+                        <% if (errors) { %>
+                            <%= errors.first_name %>
+                                <% } %>
+                    </div>
+                    <div class="mb-2">
+                        <label for="last_name" class="form-label text-left">Last name</label>
+                        <input name="last_name" type="text" class="form-control rounded" placeholder="Last name"
+                            value="<%= last_name || '' %>" required>
+                        <div class="text-danger mt-2">
+                            <% if (errors) { %>
+                                <%= errors.last_name %>
+                                    <% } %>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label for="email" class="form-label text-left">Email</label>
+                        <input name="email" type="text" class="form-control rounded" placeholder="Email"
+                            value="<%= email || '' %>" required>
+                        <div class="text-danger mt-2">
+                            <% if (errors) { %>
+                                <%= errors.email %>
+                                    <% } %>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label for="password" class="form-label text-left">Password</label>
+                        <input name="password" type="password" class="form-control rounded" placeholder="Password"
+                            value="<%= password || '' %>" required>
+                        <div class="text-danger mt-2">
+                            <% if (errors) { %>
+                                <%= errors.password %>
+                                    <% } %>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="role" class="form-label text-left">Role</label>
+                        <select name="role" class="form-control rounded" placeholder="Password">
+                            <option value="3">User</option>
+                            <option value="2">Admin</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-2 w-100">Submit</button>
+
+                    <div class="text-danger mt-2">
+                        <% if (errors) { %>
+                            <%= errors.pageError %>
+                                <% } %>
+                    </div>
+
+                    <div class="my-1">Go back to <a href="/login">login</a></div>
+
+                </form>
+                <% } else{ %>
+                    <form action="/login" method="GET">
+                        <h5 class="text-success m-4 text-center">User created successfully</h5>
+                        <button type="submit" class="btn btn-primary mt-2 w-100">Go back to login</button>
+                    </form>
+                    <% } %>
+
+    </div>
+</div>

@@ -1,0 +1,117 @@
+login:
+    post:
+        summary: User authentication
+        description: Use to login a valid user and issue a JWT token.
+        requestBody:
+            content:
+                application/json:
+                    schema:
+                        $ref: '../base.yaml#/components/schemas/LoginUser'
+        responses:
+            200:
+                description: OK.
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '../base.yaml#/components/schemas/Success'
+                                - type: object
+                                  properties:
+                                      message:
+                                          type: string
+                                          example: Login successful
+                                      token:
+                                          type: string
+                                          example: Bearer accesstoken
+            400:
+                description: Bad Request.
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '../base.yaml#/components/schemas/Error'
+                                - type: object
+                                  properties:
+                                      message:
+                                          type: string
+                                          example: Incorrect email or password, please check again!
+            422:
+                description: Validation Error.
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '../base.yaml#/components/schemas/Error'
+                                - type: object
+                                  properties:
+                                      message:
+                                          type: object
+                                          properties:
+                                              email:
+                                                  example: 'Email cannot be empty'
+                                              password:
+                                                  example: 'Password cannot be empty'
+            500:
+                $ref: '../base.yaml#/components/responses/ServerError'
+        tags: [Auth]
+
+register:
+    post:
+        summary: User authentication
+        description: Use to register a new user.
+        requestBody:
+            content:
+                application/json:
+                    schema:
+                        $ref: '../base.yaml#/components/schemas/NewUser'
+        responses:
+            200:
+                description: OK.
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '../base.yaml#/components/schemas/Success'
+                                - type: object
+                                  properties:
+                                      message:
+                                          type: string
+                                          example: User created successfully
+                                      userId:
+                                          type: integer
+                                          example: 2
+            400:
+                description: BadRequest.
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '../base.yaml#/components/schemas/Error'
+                                - type: object
+                                  properties:
+                                      message:
+                                          type: string
+                                          example: User with email already exists!
+            422:
+                description: Validation Error.
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '../base.yaml#/components/schemas/Error'
+                                - type: object
+                                  properties:
+                                      message:
+                                          type: object
+                                          properties:
+                                              email:
+                                                  example: 'Email cannot be empty'
+                                              password:
+                                                  example: 'Password cannot be empty'
+                                              first_name:
+                                                  example: 'First name cannot be empty'
+                                              last_name:
+                                                  example: 'Last name cannot be empty'
+            500:
+                $ref: '../base.yaml#/components/responses/ServerError'
+        tags: [Auth]

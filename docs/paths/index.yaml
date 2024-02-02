@@ -1,0 +1,11 @@
+#AUTH
+/auth/login:
+    $ref: 'auth.yaml#/login'
+/auth/register:
+    $ref: 'auth.yaml#/register'
+
+# USER ROUTES
+/user/{id}:
+    $ref: 'user.yaml#/param'
+/user/list:
+    $ref: 'user.yaml#/list'

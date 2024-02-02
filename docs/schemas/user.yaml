@@ -1,0 +1,48 @@
+LoginUser:
+    type: object
+    properties:
+        email:
+            type: string
+            description: User email.
+            example: chamara@gmail.com
+        password:
+            type: string
+            description: User password.
+            example: password
+EditUser:
+    type: object
+    properties:
+        first_name:
+            type: string
+            description: User first name.
+            example: Chamara
+        last_name:
+            type: string
+            description: User last name.
+            example: Chathuranga
+        role:
+            type: string
+            description: User role.
+            example: 1
+NewUser:
+    allOf:
+        - type: object
+        - $ref: '#/EditUser'
+        - $ref: '#/LoginUser'
+User:
+    allOf:
+        - type: object
+          properties:
+              id:
+                  type: integer
+                  description: User ID.
+                  example: 1
+              created_at:
+                  type: integer
+                  description: Date account created.
+                  example: 0
+              updated_at:
+                  type: integer
+                  description: Date account last updated.
+                  example: 0
+        - $ref: '#/NewUser'

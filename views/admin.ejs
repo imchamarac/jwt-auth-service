@@ -1,0 +1,13 @@
+<div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="https://uilogos.co/img/logomark/u-mark.png" alt="" width="auto" height="100">
+    <h1 class="display-5 fw-bold" data-testid="page-title">Admin Page</h1>
+    <div class="col-lg-6 mx-auto">
+        <h1 class="display-6" data-testid="admin-message">
+            <% if (message) { %>
+                <%= message %>
+                    <% } %>
+        </h1>
+
+        <a href="/" type="button" class="btn btn-danger btn-lg px-4 gap-3" data-testid="home-button">Home</a>
+    </div>
+</div>

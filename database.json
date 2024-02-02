@@ -1,0 +1,8 @@
+{
+    "dev": {
+        "driver": "pg",
+        "user": "admin",
+        "password": "",
+        "database": "jwt_auth_service"
+    }
+}

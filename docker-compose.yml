@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+    pgadmin:
+        container_name: pg_admin4
+        image: dpage/pgadmin4
+        restart: always
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@admin.com
+            PGADMIN_DEFAULT_PASSWORD: root
+        ports:
+            - '5050:80'
+        volumes:
+            - pgadmin-data:/var/lib/pgadmin
+
+    db:
+        container_name: pg_server
+        build:
+            context: .
+            dockerfile: postgres.dockerfile
+        environment:
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=admin
+            - POSTGRES_DB=jwt_auth_service
+        ports:
+            - 5432:5432
+        healthcheck:
+            test: 'pg_isready -h -U admin db'
+            interval: 3s
+            timeout: 5s
+            retries: 5
+        restart: unless-stopped
+        volumes:
+            - db-data:/var/lib/postgresql/data
+
+    app:
+        container_name: jwt_auth-service
+        build:
+            no_cache: true
+            context: .
+        ports:
+            - 8080:8080
+        depends_on:
+            - db
+        env_file:
+            - .env
+        restart: unless-stopped
+        environment:
+            - PGHOST=pg_server
+volumes:
+    db-data:
+    pgadmin-data:
